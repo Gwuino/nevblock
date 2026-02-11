@@ -2,6 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Подавление интерактивных запросов debconf
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
     gcc \

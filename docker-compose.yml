@@ -1,0 +1,60 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=nevblock
+      - POSTGRES_USER=nevblock
+      - POSTGRES_PASSWORD=nevblock_password
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nevblock"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  django:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_SECRET_KEY=django-insecure-dev-key-change-in-production
+      - DATABASE_URL=postgresql://nevblock:nevblock_password@db:5432/nevblock
+    volumes:
+      - ./backend:/app
+      - ./data:/data:ro
+      - django_static:/app/staticfiles
+      - django_media:/app/media
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py import_data --clear &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - DJANGO_API_URL=http://django:8000/api
+    restart: unless-stopped
+    volumes:
+      # Монтируем данные, если нужно сохранять их между перезапусками
+      - ./data:/app/data:ro
+    depends_on:
+      - django
+
+volumes:
+  django_static:
+  django_media:
+  postgres_data:

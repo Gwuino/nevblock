@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --nevblock-blue: #1a365d;
+  --nevblock-brown: #7c2d2d;
+  --nevblock-gray: #e2e8f0;
+  --nevblock-light: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-nevblock-blue: var(--nevblock-blue);
+  --color-nevblock-brown: var(--nevblock-brown);
+  --color-nevblock-gray: var(--nevblock-gray);
+  --color-nevblock-light: var(--nevblock-light);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle section dividers */
+.section-divider {
+  position: relative;
+}
+.section-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nevblock-blue), var(--nevblock-brown));
+  border-radius: 2px;
+}

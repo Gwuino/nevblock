@@ -1,0 +1,15 @@
+{
+  "products": [
+    { "id": "1", "category": "fbs", "name": "ФБС 24-4-6", "price": 3500, "unit": "шт", "order": 1 },
+    { "id": "2", "category": "fbs", "name": "ФБС 12-4-6", "price": 1800, "unit": "шт", "order": 2 },
+    { "id": "3", "category": "manipulator", "name": "Манипулятор", "price": 4500, "unit": "рейс", "order": 3 },
+    { "id": "4", "category": "rings", "name": "Кольцо КС-10-9", "price": 1200, "unit": "шт", "order": 4 },
+    { "id": "5", "category": "rings", "name": "Кольцо КС-15-9", "price": 1800, "unit": "шт", "order": 5 },
+    { "id": "6", "category": "rings", "name": "Кольцо КС-20-9", "price": 2400, "unit": "шт", "order": 6 },
+    { "id": "7", "category": "shlakoblock", "name": "Шлакоблок полнотелый", "price": 45, "unit": "шт", "order": 7 },
+    { "id": "8", "category": "shlakoblock", "name": "Шлакоблок пустотелый", "price": 38, "unit": "шт", "order": 8 },
+    { "id": "9", "category": "polublok", "name": "Полублок газосиликатный", "price": 95, "unit": "шт", "order": 9 },
+    { "id": "10", "category": "covers_bottoms", "name": "Крышка ПП 10-1", "price": 800, "unit": "шт", "order": 10 },
+    { "id": "11", "category": "covers_bottoms", "name": "Днище ПН 10-1", "price": 750, "unit": "шт", "order": 11 }
+  ]
+}

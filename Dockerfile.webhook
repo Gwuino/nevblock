@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY webhook-server.py .
+RUN chmod +x webhook-server.py
+
+EXPOSE 9000
+
+CMD ["python3", "webhook-server.py"]

@@ -55,7 +55,8 @@ export default async function HomePage() {
             Г. Невинномысск
           </p>
           <p className="text-white/85 max-w-2xl mx-auto mb-10 sm:mb-12 text-base sm:text-lg leading-relaxed">
-            ФБС, кольца ЖБИ, шлакоблок, полублок, крышки и днища ЖБИ.<br className="hidden sm:block" />
+            ФБС, кольца ЖБИ, шлакоблок, полублок, крышки и днища ЖБИ.{" "}
+            <br className="hidden sm:block" />
             Доставка манипулятором. Работаем с юридическими лицами и частными заказчиками.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

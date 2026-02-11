@@ -29,6 +29,7 @@ fi
 # Обновление кода из Git (если используется Git)
 if [ -d ".git" ]; then
     log "📥 Обновление кода из Git..."
+    git config --global --add safe.directory "$PROJECT_DIR" 2>/dev/null || true
     git pull origin main 2>&1 | tee -a "$LOG_FILE" || git pull origin master 2>&1 | tee -a "$LOG_FILE"
 fi
 

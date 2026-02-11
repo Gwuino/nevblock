@@ -30,10 +30,15 @@ fi
 if [ -d ".git" ]; then
     log "📥 Обновление кода из Git..."
     git config --global --add safe.directory "$PROJECT_DIR" 2>/dev/null || true
-    git pull origin main 2>&1 | tee -a "$LOG_FILE" || git pull origin master 2>&1 | tee -a "$LOG_FILE"
+    git fetch origin 2>&1 | tee -a "$LOG_FILE"
+    # Сброс локальных изменений, чтобы pull не падал; .env.prod не в git — не затрётся
+    git reset --hard origin/main 2>&1 | tee -a "$LOG_FILE" || git reset --hard origin/master 2>&1 | tee -a "$LOG_FILE"
 fi
 
 # Пересборка и перезапуск контейнеров
+# Освобождаем место под сборку (кэш сборки)
+docker builder prune -f 2>&1 | tee -a "$LOG_FILE" || true
+
 log "🔨 Пересборка Docker образов..."
 
 # Используем docker compose (новый синтаксис) или docker-compose (старый)

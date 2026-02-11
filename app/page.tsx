@@ -2,7 +2,7 @@ import { getProducts } from "@/lib/products";
 import { getContacts } from "@/lib/contacts";
 import { getReviews } from "@/lib/reviews";
 import { CATEGORY_LABELS } from "@/lib/types";
-import type { CategoryKey } from "@/lib/types";
+import type { CategoryKey, Product } from "@/lib/types";
 import { ProductCard } from "@/components/ProductCard";
 import { BlockCalculator } from "@/components/BlockCalculator";
 
@@ -10,17 +10,17 @@ export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const [products, c, reviewsData] = await Promise.all([
-    getProducts().catch(() => []),
+    getProducts().catch((): Product[] => []),
     getContacts(),
     getReviews(),
   ]);
-  const byCategory = products.reduce<Record<CategoryKey, typeof products>>(
+  const byCategory = products.reduce<Record<CategoryKey, Product[]>>(
     (acc, p) => {
       if (!acc[p.category]) acc[p.category] = [];
       acc[p.category].push(p);
       return acc;
     },
-    {} as Record<CategoryKey, typeof products>
+    {} as Record<CategoryKey, Product[]>
   );
   const order: CategoryKey[] = [
     "fbs",

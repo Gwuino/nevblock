@@ -65,24 +65,47 @@ export function Header() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`md:hidden fixed inset-x-0 bottom-0 top-0 z-10 bg-white transition-opacity duration-200 pt-[57px] ${
+        className={`md:hidden fixed inset-0 z-10 transition-opacity duration-200 ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden={!menuOpen}
-        style={{ minHeight: "calc(100dvh - 57px)" }}
       >
-        <nav className="flex flex-col h-full overflow-y-auto p-4 gap-0 pb-[env(safe-area-inset-bottom,0)]">
-          {navLinks.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
+        {/* Тап по затемнённой области закрывает меню */}
+        <div
+          className="absolute inset-0 bg-black/20 pt-[57px]"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-x-0 top-[57px] bottom-0 bg-white shadow-xl overflow-y-auto pb-[env(safe-area-inset-bottom,0)]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-4 flex items-center justify-between border-b border-gray-200">
+            <span className="text-sm font-medium text-gray-500">Меню</span>
+            <button
+              type="button"
               onClick={() => setMenuOpen(false)}
-              className="py-4 px-4 rounded-xl text-[var(--nevblock-blue)] font-medium hover:bg-gray-100 active:bg-gray-200 text-lg min-h-[48px] flex items-center border-b border-gray-100 last:border-b-0"
+              className="p-2 -mr-2 rounded-full text-[var(--nevblock-blue)] hover:bg-gray-100 active:bg-gray-200 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
+              aria-label="Закрыть меню"
             >
-              {label}
-            </a>
-          ))}
-        </nav>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav className="flex flex-col p-4 gap-0">
+            {navLinks.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className="py-4 px-4 rounded-xl text-[var(--nevblock-blue)] font-medium hover:bg-gray-100 active:bg-gray-200 text-lg min-h-[48px] flex items-center border-b border-gray-100 last:border-b-0 touch-manipulation"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
     </header>
   );

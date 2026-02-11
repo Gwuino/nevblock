@@ -31,6 +31,7 @@ services:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-change-this-secret-key-in-production}
       - DATABASE_URL=postgresql://nevblock:${POSTGRES_PASSWORD:-nevblock_prod_password_change_me}@db:5432/nevblock
       - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,django,django:8000,45.80.130.183}
+      - PUBLIC_BASE_URL=${PUBLIC_BASE_URL:-http://45.80.130.183}
     volumes:
       - ./backend:/app
       - ./data:/data:ro

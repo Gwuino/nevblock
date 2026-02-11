@@ -147,6 +147,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Публичный URL сайта для абсолютных ссылок на медиа (чтобы картинки грузились в браузере)
+# Без этого API отдаёт http://django:8000/media/..., который браузер не открывает
+PUBLIC_BASE_URL = os.environ.get('PUBLIC_BASE_URL', '').rstrip('/')
+
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

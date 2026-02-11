@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { href: "/", label: "Главная" },
   { href: "/#quality", label: "Почему мы" },
-  { href: "/#calculator", label: "Калькулятор" },
   { href: "/#catalog", label: "Каталог" },
+  { href: "/#calculator", label: "Калькулятор" },
   { href: "/#reviews", label: "Отзывы" },
   { href: "/#contacts", label: "Контакты" },
 ];
@@ -65,18 +65,19 @@ export function Header() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`md:hidden fixed inset-0 top-[57px] z-10 bg-white transition-opacity duration-200 ${
+        className={`md:hidden fixed inset-x-0 bottom-0 top-0 z-10 bg-white transition-opacity duration-200 pt-[57px] ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden={!menuOpen}
+        style={{ minHeight: "calc(100dvh - 57px)" }}
       >
-        <nav className="flex flex-col p-4 gap-1">
+        <nav className="flex flex-col h-full overflow-y-auto p-4 gap-0 pb-[env(safe-area-inset-bottom,0)]">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="py-3 px-4 rounded-xl text-[var(--nevblock-blue)] font-medium hover:bg-gray-100 active:bg-gray-200 text-lg min-h-[48px] flex items-center"
+              className="py-4 px-4 rounded-xl text-[var(--nevblock-blue)] font-medium hover:bg-gray-100 active:bg-gray-200 text-lg min-h-[48px] flex items-center border-b border-gray-100 last:border-b-0"
             >
               {label}
             </a>

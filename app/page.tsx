@@ -86,7 +86,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-24">
           <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block mb-3 px-3 py-1 bg-[var(--nevblock-blue)]/10 text-[var(--nevblock-blue)] text-sm font-medium rounded-full">
-              Почему мы
+              О нас
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--nevblock-blue)] mb-3">
               Качество и надёжность

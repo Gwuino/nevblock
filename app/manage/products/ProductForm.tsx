@@ -52,7 +52,7 @@ export function ProductForm({
           setError(data.error ?? "Ошибка сохранения");
           return;
         }
-        router.push("/admin");
+        router.push("/manage");
         router.refresh();
       } else {
         const res = await fetch(`/api/products/${product!.id}`, {
@@ -65,7 +65,7 @@ export function ProductForm({
           setError(data.error ?? "Ошибка сохранения");
           return;
         }
-        router.push("/admin");
+        router.push("/manage");
         router.refresh();
       }
     } finally {

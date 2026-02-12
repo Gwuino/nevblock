@@ -5,7 +5,7 @@ import { ProductForm } from "../ProductForm";
 
 type CategoryKey = keyof typeof CATEGORY_LABELS;
 
-export default async function AdminProductPage({
+export default async function ManageProductPage({
   params,
 }: {
   params: Promise<{ id: string }>;

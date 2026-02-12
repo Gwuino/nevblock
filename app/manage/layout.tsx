@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogoutButton } from "@/components/LogoutButton";
 
-export default function AdminLayout({
+export default function ManageLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export default function AdminLayout({
         <Link href="/" className="text-[var(--nevblock-blue)] hover:underline">
           На сайт
         </Link>
-        <Link href="/admin" className="text-[var(--nevblock-blue)] hover:underline">
+        <Link href="/manage" className="text-[var(--nevblock-blue)] hover:underline">
           Товары
         </Link>
         <span className="ml-auto">

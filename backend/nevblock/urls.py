@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('manage/backend/', admin.site.urls),  # скрытый путь для Django admin
     path('api/', include('catalog.urls')),
 ]
 

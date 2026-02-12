@@ -71,7 +71,7 @@ export function AdminProductList({
             </div>
             <div className="flex gap-3 shrink-0">
               <Link
-                href={`/admin/products/${p.id}`}
+                href={`/manage/products/${p.id}`}
                 className="text-sm text-[var(--nevblock-blue)] hover:underline min-h-[44px] inline-flex items-center"
               >
                 Редактировать

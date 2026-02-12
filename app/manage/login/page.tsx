@@ -10,7 +10,7 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const from = searchParams.get("from") ?? "/admin";
+  const from = searchParams.get("from") ?? "/manage";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,7 +37,7 @@ function LoginForm() {
   return (
     <div className="max-w-sm mx-auto mt-8 sm:mt-12 px-4 sm:px-0">
       <h1 className="text-xl font-bold text-[var(--nevblock-blue)] mb-6">
-        Вход в админ-панель
+        Вход
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -77,14 +77,11 @@ function LoginForm() {
           {loading ? "Вход…" : "Войти"}
         </button>
       </form>
-      <p className="mt-4 text-sm text-gray-500">
-        По умолчанию в разработке: admin / admin
-      </p>
     </div>
   );
 }
 
-export default function AdminLoginPage() {
+export default function ManageLoginPage() {
   return (
     <Suspense fallback={<div className="max-w-sm mx-auto mt-12">Загрузка…</div>}>
       <LoginForm />

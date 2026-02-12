@@ -19,6 +19,7 @@
 
 # production
 /build
+/build-context-prebuilt
 
 # misc
 .DS_Store

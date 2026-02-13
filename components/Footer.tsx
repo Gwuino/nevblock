@@ -6,8 +6,8 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center gap-6 text-center">
           <div className="flex flex-col items-center gap-2 text-sm text-white/70">
             <span>г. Невинномысск</span>
-            <a href="tel:+79280120026" className="hover:text-white transition-colors">
-              +7 (928) 012-00-26
+            <a href="tel:+79283770044" className="hover:text-white transition-colors">
+              +7 (928) 377-00-44
             </a>
           </div>
           <span className="text-sm text-white/70">&copy; {year} ООО «НЕВБЛОК»</span>

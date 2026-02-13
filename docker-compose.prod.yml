@@ -53,11 +53,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - .env.prod
     ports:
       - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
       - DJANGO_API_URL=http://django:8000/api
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
     restart: unless-stopped
     volumes:
       - ./data:/app/data:ro

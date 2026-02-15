@@ -19,13 +19,13 @@ export function Header() {
           <Logo />
         </a>
 
-        {/* Навигация: на мобильных — кнопки в ряд (всегда видно), на десктопе — как раньше */}
-        <nav className="flex flex-wrap items-center gap-2 md:flex-nowrap md:gap-6">
+        {/* На мобильных: одна строка, мельче, с горизонтальной прокруткой. На десктопе — как раньше */}
+        <nav className="flex overflow-x-auto gap-2 flex-nowrap items-center w-full md:overflow-visible md:w-auto md:gap-6 py-0.5 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth touch-pan-x [&::-webkit-scrollbar]:h-0.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className="px-3 py-2 rounded-lg text-[var(--nevblock-blue)] font-medium bg-gray-100 hover:bg-[var(--nevblock-blue)]/10 active:bg-[var(--nevblock-blue)]/20 border border-gray-200/80 hover:border-[var(--nevblock-blue)]/30 transition-colors text-sm touch-manipulation md:bg-transparent md:border-0 md:py-2 md:px-0 md:hover:bg-transparent md:hover:border-0 md:hover:text-[var(--nevblock-brown)] md:rounded-none"
+              className="shrink-0 px-2.5 py-1.5 rounded-lg text-[var(--nevblock-blue)] font-medium bg-gray-100 hover:bg-[var(--nevblock-blue)]/10 active:bg-[var(--nevblock-blue)]/20 border border-gray-200/80 hover:border-[var(--nevblock-blue)]/30 transition-colors text-xs touch-manipulation md:shrink md:bg-transparent md:border-0 md:py-2 md:px-0 md:text-base md:hover:bg-transparent md:hover:border-0 md:hover:text-[var(--nevblock-brown)] md:rounded-none"
             >
               {label}
             </a>

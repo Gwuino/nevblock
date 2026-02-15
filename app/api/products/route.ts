@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       category_id: djangoCategory.id,
       name: String(name),
       description: description != null ? String(description) : undefined,
-      price: price != null && price !== "" ? Number(price) : null,
+      price: price != null && price !== "" ? String(price) : null,
       unit: unit ?? "шт",
       order: typeof order === "number" ? order : undefined,
       image: image ? String(image) : undefined,

@@ -35,11 +35,16 @@ export function ProductCard({ product }: { product: Product }) {
         </h3>
         <div className="flex items-baseline justify-between gap-2">
           <p className="text-[var(--nevblock-blue)] font-bold text-lg sm:text-xl">
-            {product.price != null
-              ? `${product.price.toLocaleString("ru-RU")} ₽`
+            {product.price != null && product.price.trim() !== ""
+              ? (() => {
+                  const n = Number(product.price);
+                  return !Number.isNaN(n)
+                    ? `${n.toLocaleString("ru-RU")} ₽`
+                    : product.price;
+                })()
               : "по запросу"}
           </p>
-          {product.price != null && (
+          {product.price != null && product.price.trim() !== "" && !Number.isNaN(Number(product.price)) && (
             <span className="text-gray-400 text-sm">/ {product.unit}</span>
           )}
         </div>

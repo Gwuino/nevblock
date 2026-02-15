@@ -66,7 +66,9 @@ export function AdminProductList({
             <div className="min-w-0">
               <span className="font-medium block sm:inline">{p.name}</span>
               <span className="text-gray-500 text-sm block sm:inline sm:ml-2">
-                {categoryLabels[p.category]} · {p.price != null ? `${p.price} ₽/${p.unit}` : "по запросу"}
+                {categoryLabels[p.category]} · {p.price != null && p.price.trim() !== ""
+                ? (!Number.isNaN(Number(p.price)) ? `${p.price} ₽/${p.unit}` : p.price)
+                : "по запросу"}
               </span>
             </div>
             <div className="flex gap-3 shrink-0">

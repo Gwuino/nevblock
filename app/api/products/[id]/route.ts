@@ -37,7 +37,7 @@ export async function PUT(
       (updateData as any).category_id = djangoCategory.id;
     }
     if (description !== undefined) updateData.description = description ? String(description) : undefined;
-    if (price !== undefined) updateData.price = price != null && price !== "" ? Number(price) : null;
+    if (price !== undefined) updateData.price = price != null && price !== "" ? String(price) : null;
     if (unit != null) updateData.unit = String(unit);
     if (order !== undefined) updateData.order = Number(order);
     if (image !== undefined) updateData.image = image ? String(image) : undefined;

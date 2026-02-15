@@ -36,7 +36,7 @@ export function ProductForm({
         name,
         category,
         description: description || undefined,
-        price: price === "" ? null : Number(price),
+        price: price === "" ? null : String(price).trim(),
         unit,
         order: Number(order),
         image: image || undefined,
@@ -167,7 +167,7 @@ export function ProductForm({
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Цена (пусто = по запросу)
+          Цена (число или текст, пусто = по запросу)
         </label>
         <input
           type="number"

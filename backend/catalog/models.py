@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -27,13 +26,12 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=200, verbose_name="Название")
     description = models.TextField(blank=True, null=True, verbose_name="Описание")
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
+    price = models.CharField(
+        max_length=100,
         blank=True,
-        validators=[MinValueValidator(0)],
-        verbose_name="Цена"
+        null=True,
+        verbose_name="Цена",
+        help_text="Число (500) или текст: по запросу, договорная, от 300 ₽ и т.д.",
     )
     unit = models.CharField(max_length=20, default="шт", verbose_name="Единица измерения")
     order = models.IntegerField(default=0, verbose_name="Порядок сортировки")

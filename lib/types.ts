@@ -11,7 +11,7 @@ export interface Product {
   category: CategoryKey;
   name: string;
   description?: string;
-  price: number | null; // null = "под запрос"
+  price: string | null; // число как строка или текст (по запросу, договорная и т.д.)
   unit: string;
   order: number;
   image?: string; // path like /products/xxx.jpg or URL

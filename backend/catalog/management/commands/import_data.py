@@ -92,7 +92,7 @@ class Command(BaseCommand):
                 'category': category,
                 'name': name,
                 'description': description if description else None,
-                'price': float(price) if price is not None else None,
+                'price': str(price) if price is not None else None,
                 'unit': unit,
                 'order': order,
             }

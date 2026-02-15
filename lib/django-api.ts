@@ -16,7 +16,7 @@ export interface DjangoProduct {
   category: DjangoCategory;
   name: string;
   description?: string;
-  price: number | null;
+  price: string | null;
   unit: string;
   order: number;
   image?: string;
@@ -26,7 +26,7 @@ export interface DjangoProductCreate {
   category_id?: number;
   name: string;
   description?: string;
-  price: number | null;
+  price: string | null;
   unit?: string;
   order?: number;
   image?: string;

@@ -160,6 +160,14 @@ docker-compose -f docker-compose.prod.yml down
 docker-compose -f docker-compose.prod.yml exec django python manage.py createsuperuser
 ```
 
+### Загрузка каталога из data/products.json
+
+Каталог хранится в БД; при перезапуске данные **не** перезатираются. Чтобы один раз загрузить или сбросить каталог из файла `data/products.json` (например, после первой установки):
+
+```bash
+docker-compose -f docker-compose.prod.yml exec django python manage.py import_data --clear
+```
+
 ## Безопасность
 
 ⚠️ **Важно:**

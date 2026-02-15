@@ -29,8 +29,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
-    'localhost,127.0.0.1,0.0.0.0,django,django:8000,45.80.130.183'
+    'localhost,127.0.0.1,0.0.0.0,django,django:8000,45.80.130.183,nevblock.ru,www.nevblock.ru'
 ).split(',')
+
+# Истоки, с которых разрешены POST-запросы (HTTPS после включения SSL)
+CSRF_TRUSTED_ORIGINS = [
+    'https://nevblock.ru',
+    'https://www.nevblock.ru',
+]
+if os.environ.get('CSRF_TRUSTED_ORIGINS'):
+    CSRF_TRUSTED_ORIGINS = [s.strip() for s in os.environ['CSRF_TRUSTED_ORIGINS'].split(',') if s.strip()]
 
 
 # Application definition

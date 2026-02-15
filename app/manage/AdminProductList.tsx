@@ -12,9 +12,9 @@ export function AdminProductList({
   categoryLabels,
 }: {
   products: Product[];
-  categoryLabels: Record<CategoryKey, string>;
+  categoryLabels: Record<string, string>;
 }) {
-  const [filter, setFilter] = useState<CategoryKey | "">("");
+  const [filter, setFilter] = useState<string>("");
   const [deleting, setDeleting] = useState<string | null>(null);
 
   const filtered =
@@ -46,13 +46,13 @@ export function AdminProductList({
         </label>
         <select
           value={filter}
-          onChange={(e) => setFilter(e.target.value as CategoryKey | "")}
+          onChange={(e) => setFilter(e.target.value)}
           className="border border-gray-300 rounded-lg px-3 py-2"
         >
           <option value="">Все</option>
-          {(Object.keys(categoryLabels) as CategoryKey[]).map((cat) => (
+          {Object.entries(categoryLabels).map(([cat, label]) => (
             <option key={cat} value={cat}>
-              {categoryLabels[cat]}
+              {label}
             </option>
           ))}
         </select>
@@ -66,7 +66,7 @@ export function AdminProductList({
             <div className="min-w-0">
               <span className="font-medium block sm:inline">{p.name}</span>
               <span className="text-gray-500 text-sm block sm:inline sm:ml-2">
-                {categoryLabels[p.category]} · {p.price != null && p.price.trim() !== ""
+                {categoryLabels[p.category] ?? p.category} · {p.price != null && p.price.trim() !== ""
                 ? (!Number.isNaN(Number(p.price)) ? `${p.price} ₽/${p.unit}` : p.price)
                 : "по запросу"}
               </span>

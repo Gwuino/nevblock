@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { getProducts } from "@/lib/products";
+import { getCategories } from "@/lib/categories";
 import { CATEGORY_LABELS } from "@/lib/types";
 import { AdminProductList } from "./AdminProductList";
 
 export const dynamic = 'force-dynamic';
 
 export default async function ManagePage() {
-  const products = await getProducts();
+  const [products, categories] = await Promise.all([
+    getProducts(),
+    getCategories().catch(() => []),
+  ]);
+  const categoryLabels: Record<string, string> =
+    categories.length > 0
+      ? Object.fromEntries(categories.map((c) => [c.key, c.label]))
+      : { ...CATEGORY_LABELS };
   return (
     <>
       <div className="flex items-center justify-between mb-6">
@@ -22,7 +30,7 @@ export default async function ManagePage() {
       </div>
       <AdminProductList
         products={products}
-        categoryLabels={CATEGORY_LABELS}
+        categoryLabels={categoryLabels}
       />
     </>
   );

@@ -8,7 +8,8 @@ export type CategoryKey =
 
 export interface Product {
   id: string;
-  category: CategoryKey;
+  /** Ключ категории из API; может быть новым, добавленным в админке */
+  category: CategoryKey | string;
   name: string;
   description?: string;
   price: string | null; // число как строка или текст (по запросу, договорная и т.д.)

@@ -1,35 +1,37 @@
 import { getProducts } from "@/lib/products";
+import { getCategories } from "@/lib/categories";
 import { getContacts } from "@/lib/contacts";
 import { getReviews } from "@/lib/reviews";
-import { CATEGORY_LABELS } from "@/lib/types";
-import type { CategoryKey, Product } from "@/lib/types";
+import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/ProductCard";
 import { BlockCalculator } from "@/components/BlockCalculator";
 
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const [products, c, reviewsData] = await Promise.all([
+  const [products, categories, c, reviewsData] = await Promise.all([
     getProducts().catch((): Product[] => []),
+    getCategories().catch(() => []),
     getContacts(),
     getReviews(),
   ]);
-  const byCategory = products.reduce<Record<CategoryKey, Product[]>>(
+  const byCategory = products.reduce<Record<string, Product[]>>(
     (acc, p) => {
-      if (!acc[p.category]) acc[p.category] = [];
-      acc[p.category].push(p);
+      const key = p.category;
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(p);
       return acc;
     },
-    {} as Record<CategoryKey, Product[]>
+    {}
   );
-  const order: CategoryKey[] = [
-    "fbs",
-    "manipulator",
-    "rings",
-    "shlakoblock",
-    "polublok",
-    "covers_bottoms",
-  ];
+  const categoryOrder = categories.sort((a, b) => a.order - b.order).map((cat) => cat.key);
+  const categoryLabels: Record<string, string> = Object.fromEntries(
+    categories.map((cat) => [cat.key, cat.label])
+  );
+  const order: string[] = [...categoryOrder];
+  Object.keys(byCategory).forEach((key) => {
+    if (!order.includes(key)) order.push(key);
+  });
   const tel = c.phoneRaw ?? c.phone?.replace(/\D/g, "") ?? "";
 
   return (
@@ -146,7 +148,7 @@ export default async function HomePage() {
                 <div key={cat}>
                   <h3 className="text-lg sm:text-xl font-semibold text-[var(--nevblock-brown)] mb-4 sm:mb-6 flex items-center gap-2">
                     <span className="w-1 h-5 sm:h-6 bg-[var(--nevblock-brown)] rounded-full shrink-0" />
-                    {CATEGORY_LABELS[cat]}
+                    {categoryLabels[cat] ?? cat}
                   </h3>
                   <ul className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {items.map((p) => (

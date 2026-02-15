@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Product, CategoryKey } from "@/lib/types";
+import type { Product } from "@/lib/types";
 
 export function ProductForm({
   product,
@@ -13,7 +13,7 @@ export function ProductForm({
 }) {
   const router = useRouter();
   const [name, setName] = useState(product?.name ?? "");
-  const [category, setCategory] = useState<CategoryKey>(product?.category ?? "fbs");
+  const [category, setCategory] = useState<string>(product?.category ?? "fbs");
   const [description, setDescription] = useState(product?.description ?? "");
   const [price, setPrice] = useState(
     product?.price != null ? String(product.price) : ""
@@ -93,7 +93,7 @@ export function ProductForm({
         </label>
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value as CategoryKey)}
+          onChange={(e) => setCategory(e.target.value)}
           className="w-full border border-gray-300 rounded-lg px-3 py-2"
         >
           {Object.entries(categories).map(([key, label]) => (
